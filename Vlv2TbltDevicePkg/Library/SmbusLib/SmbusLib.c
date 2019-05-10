@@ -2,10 +2,10 @@
   Intel ICH9 SMBUS library implementation built upon I/O library.
 
   Copyright (c) 2010 - 2014, Intel Corporation. All rights reserved.<BR>
-                                                                                   
+                                                                                   
   SPDX-License-Identifier: BSD-2-Clause-Patent
 
-                                                                                   
+                                                                                   
 
 **/
 
