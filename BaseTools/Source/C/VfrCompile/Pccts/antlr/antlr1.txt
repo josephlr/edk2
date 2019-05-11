@@ -9,48 +9,48 @@ NAME
      antlr - ANother Tool for Language Recognition
 
 SYNTAX
-     antlr [_o_p_t_i_o_n_s] _g_r_a_m_m_a_r__f_i_l_e_s
+     antlr [options] grammar_files
 
 DESCRIPTION
-     _A_n_t_l_r converts an extended form of context-free grammar into
+     Antlr converts an extended form of context-free grammar into
      a set of C functions which directly implement an efficient
      form of deterministic recursive-descent LL(k) parser.
      Context-free grammars may be augmented with predicates to
      allow semantics to influence parsing; this allows a form of
      context-sensitive parsing.  Selective backtracking is also
      available to handle non-LL(k) and even non-LALR(k) con-
-     structs.  _A_n_t_l_r also produces a definition of a lexer which
+     structs.  Antlr also produces a definition of a lexer which
      can be automatically converted into C code for a DFA-based
-     lexer by _d_l_g.  Hence, _a_n_t_l_r serves a function much like that
-     of _y_a_c_c, however, it is notably more flexible and is more
-     integrated with a lexer generator (_a_n_t_l_r directly generates
-     _d_l_g code, whereas _y_a_c_c and _l_e_x are given independent
-     descriptions).  Unlike _y_a_c_c which accepts LALR(1) grammars,
-     _a_n_t_l_r accepts LL(k) grammars in an extended BNF notation -
+     lexer by dlg.  Hence, antlr serves a function much like that
+     of yacc, however, it is notably more flexible and is more
+     integrated with a lexer generator (antlr directly generates
+     dlg code, whereas yacc and lex are given independent
+     descriptions).  Unlike yacc which accepts LALR(1) grammars,
+     antlr accepts LL(k) grammars in an extended BNF notation -
      which eliminates the need for precedence rules.
 
-     Like _y_a_c_c grammars, _a_n_t_l_r grammars can use automatically-
+     Like yacc grammars, antlr grammars can use automatically-
      maintained symbol attribute values referenced as dollar
-     variables.  Further, because _a_n_t_l_r generates top-down
+     variables.  Further, because antlr generates top-down
      parsers, arbitrary values may be inherited from parent rules
-     (passed like function parameters).  _A_n_t_l_r also has a mechan-
+     (passed like function parameters).  Antlr also has a mechan-
      ism for creating and manipulating abstract-syntax-trees.
 
-     There are various other niceties in _a_n_t_l_r, including the
+     There are various other niceties in antlr, including the
      ability to spread one grammar over multiple files or even
      multiple grammars in a single file, the ability to generate
      a version of the grammar with actions stripped out (for
      documentation purposes), and lots more.
 
 OPTIONS
-     -ck _n
-          Use up to _n symbols of lookahead when using compressed
+     -ck n
+          Use up to n symbols of lookahead when using compressed
           (linear approximation) lookahead.  This type of looka-
           head is very cheap to compute and is attempted before
           full LL(k) lookahead, which is of exponential complex-
           ity in the worst case.  In general, the compressed loo-
-          kahead can be much deeper (e.g, -ck 10) _t_h_a_n _t_h_e _f_u_l_l
-          _l_o_o_k_a_h_e_a_d (_w_h_i_c_h _u_s_u_a_l_l_y _m_u_s_t _b_e _l_e_s_s _t_h_a_n _4).
+          kahead can be much deeper (e.g, -ck 10) than the full
+          lookahead (which usually must be less than 4).
 
      -CC  Generate C++ output from both ANTLR and DLG.
 
@@ -86,20 +86,20 @@ OPTIONS
 
      -ga  Generate ANSI-compatible code (default case).  This has
           not been rigorously tested to be ANSI XJ11 C compliant,
-          but it is close.  The normal output of _a_n_t_l_r is
+          but it is close.  The normal output of antlr is
           currently compilable under both K&R, ANSI C, and C++-
-          this option does nothing because _a_n_t_l_r generates a
+          this option does nothing because antlr generates a
           bunch of #ifdef's to do the right thing depending on
           the language.
 
-     -gc  Indicates that _a_n_t_l_r should generate no C code, i.e.,
+     -gc  Indicates that antlr should generate no C code, i.e.,
           only perform analysis on the grammar.
 
-     -gd  C code is inserted in each of the _a_n_t_l_r generated pars-
+     -gd  C code is inserted in each of the antlr generated pars-
           ing functions to provide for user-defined handling of a
           detailed parse trace.  The inserted code consists of
           calls to the user-supplied macros or functions called
-          zzTRACEIN and zzTRACEOUT.  The only argument is a _c_h_a_r
+          zzTRACEIN and zzTRACEOUT.  The only argument is a char
           * pointing to a C-style string which is the grammar
           rule recognized by the current parsing function.  If no
           definition is given for the trace functions, upon rule
@@ -110,17 +110,17 @@ OPTIONS
 
      -gh  Generate stdpccts.h for non-ANTLR-generated files to
           include.  This file contains all defines needed to
-          describe the type of parser generated by _a_n_t_l_r (e.g.
+          describe the type of parser generated by antlr (e.g.
           how much lookahead is used and whether or not trees are
           constructed) and contains the header action specified
           by the user.
 
      -gk  Generate parsers that delay lookahead fetches until
-          needed.  Without this option, _a_n_t_l_r generates parsers
-          which always have _k tokens of lookahead available.
+          needed.  Without this option, antlr generates parsers
+          which always have k tokens of lookahead available.
 
      -gl  Generate line info about grammar actions in C parser of
-          the form # _l_i_n_e "_f_i_l_e" which makes error messages from
+          the form # line "file" which makes error messages from
           the C/C++ compiler make more sense as they will point
           into the grammar file not the resulting C file.
           Debugging is easier as well, because you will step
@@ -128,18 +128,18 @@ OPTIONS
 
      -gs  Do not generate sets for token expression lists;
           instead generate a ||-separated sequence of
-          LA(1)==_t_o_k_e_n__n_u_m_b_e_r.  The default is to generate sets.
+          LA(1)==token_number.  The default is to generate sets.
 
      -gt  Generate code for Abstract-Syntax Trees.
 
      -gx  Do not create the lexical analyzer files (dlg-related).
           This option should be given when the user wishes to
           provide a customized lexical analyzer.  It may also be
-          used in _m_a_k_e scripts to cause only the parser to be
+          used in make scripts to cause only the parser to be
           rebuilt when a change not affecting the lexical struc-
           ture is made to the input grammars.
 
-     -k _n Set k of LL(k) to _n; i.e. set tokens of look-ahead
+     -k n Set k of LL(k) to n; i.e. set tokens of look-ahead
           (default==1).
 
      -o dir
@@ -171,9 +171,9 @@ OPTIONS
           release with option -pr on.  Context computation is off
           by default.
 
-     -rl _n
+     -rl n
           Limit the maximum number of tree nodes used by grammar
-          analysis to _n.  Occasionally, _a_n_t_l_r is unable to
+          analysis to n.  Occasionally, antlr is unable to
           analyze a grammar submitted by the user.  This rare
           situation can only occur when the grammar is large and
           the amount of lookahead is greater than one.  A non-
@@ -184,14 +184,14 @@ OPTIONS
           the number of calls to the full LL(k) algorithm.  An
           error message will be displayed, if this limit is
           reached, which indicates the grammar construct being
-          analyzed when _a_n_t_l_r hit a non-linearity.  Use this
-          option if _a_n_t_l_r seems to go out to lunch and your disk
-          start thrashing; try _n=10000 to start.  Once the
+          analyzed when antlr hit a non-linearity.  Use this
+          option if antlr seems to go out to lunch and your disk
+          start thrashing; try n=10000 to start.  Once the
           offending construct has been identified, try to remove
-          the ambiguity that _a_n_t_l_r was trying to overcome with
+          the ambiguity that antlr was trying to overcome with
           large lookahead analysis.  The introduction of (...)?
           backtracking blocks eliminates some of these problems -
-          _a_n_t_l_r does not analyze alternatives that begin with
+          antlr does not analyze alternatives that begin with
           (...)? (it simply backtracks, if necessary, at run
           time).
 
@@ -208,7 +208,7 @@ OPTIONS
           as the parser file.
 
 SPECIAL CONSIDERATIONS
-     _A_n_t_l_r works...  we think.  There is no implicit guarantee of
+     Antlr works...  we think.  There is no implicit guarantee of
      anything.  We reserve no legal rights to the software known
      as the Purdue Compiler Construction Tool Set (PCCTS) - PCCTS
      is in the public domain.  An individual or company may do
@@ -234,7 +234,7 @@ FILES
           output C++ parser when C++ mode is used.
 
      parser.dlg
-          output _d_l_g lexical analyzer.
+          output dlg lexical analyzer.
 
      err.c
           token string array, error sets and error support rou-
@@ -251,7 +251,7 @@ FILES
           erated by default.  Not used in C++ mode.
 
      tokens.h
-          output #_d_e_f_i_n_e_s for tokens used and function prototypes
+          output #defines for tokens used and function prototypes
           for functions generated for rules.
 
 

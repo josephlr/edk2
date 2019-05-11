@@ -9,14 +9,14 @@ NAME
      dlg - DFA Lexical Analyzer Generator
 
 SYNTAX
-     dlg [_o_p_t_i_o_n_s] _l_e_x_i_c_a_l__s_p_e_c [_o_u_t_p_u_t__f_i_l_e]
+     dlg [options] lexical_spec [output_file]
 
 DESCRIPTION
      dlg is a tool that produces fast deterministic finite auto-
      mata for recognizing regular expressions in input.
 
 OPTIONS
-     -CC  Generate C++ output.  The _o_u_t_p_u_t__f_i_l_e is not specified
+     -CC  Generate C++ output.  The output_file is not specified
           in this case.
 
      -C[ level]
@@ -69,7 +69,7 @@ OPTIONS
           in or send output to standard out.
 
 SPECIAL CONSIDERATIONS
-     _D_l_g works...  we think.  There is no implicit guarantee of
+     Dlg works...  we think.  There is no implicit guarantee of
      anything.  We reserve no legal rights to the software known
      as the Purdue Compiler Construction Tool Set (PCCTS) - PCCTS
      is in the public domain.  An individual or company may do
